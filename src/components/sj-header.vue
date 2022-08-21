@@ -1,17 +1,17 @@
 <template>
   <div class="w-full h-20 bg-gray-500 shadow-xl flex flex-row items-center justify-center text-white">
-    <div class="p-4 flex flex-row items-center" title="Sapphire">
-      <span class="m-2 text-lg">{{ sapphire }}</span>
-      <img class="w-8 h-8" :src="require('@/assets/images/currencies/sapphire.svg')">
+    <div class="p-4 flex flex-row items-center" title="Rouble">
+      <span class="m-2 text-lg">{{ rouble }}</span>
+      <img class="w-8 h-8" :src="require('@/assets/images/currencies/rouble.svg')">
     </div>
-    <div class="p-4 flex flex-row items-center" title="Emerald">
-      <span class="m-2 text-lg">{{ emerald }}</span>
-      <img class="w-8 h-8" :src="require('@/assets/images/currencies/emerald.svg')">
+    <div class="p-4 flex flex-row items-center" title="Dollar">
+      <span class="m-2 text-lg">{{ dollar }}</span>
+      <img class="w-8 h-8" :src="require('@/assets/images/currencies/dollar.svg')">
     </div>
 
-    <div class="p-4 flex flex-row items-center" title="Ruby">
-      <span class="m-2 text-lg">{{ ruby }}</span>
-      <img class="w-8 h-8" :src="require('@/assets/images/currencies/ruby.svg')">
+    <div class="p-4 flex flex-row items-center" title="Euro">
+      <span class="m-2 text-lg">{{ euro }}</span>
+      <img class="w-8 h-8" :src="require('@/assets/images/currencies/euro.svg')">
     </div>
     <div class="p-4 flex flex-row items-center" title="Diamond">
       <span class="m-2 text-lg">{{ diamond }}</span>
@@ -31,18 +31,18 @@ export default {
     }
   },
   computed: {
-    sapphire() {
-      return this.wallet.sapphire;
+    rouble() {
+      return this.wallet.rouble;
     },
-    emerald() {
-      return this.wallet.emerald;
+    dollar() {
+      return this.wallet.dollar;
     },
-    ruby() {
-      return this.wallet.ruby;
+    euro() {
+      return this.wallet.euro;
     },
     diamond() {
       return this.wallet.diamond;
-    },
+    }
   },
 
 }

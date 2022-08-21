@@ -1,9 +1,9 @@
-import {JewelAction} from "@/ig-template/features/action-generator/actions/JewelAction";
+import {RaidAction} from "@/ig-template/features/action-generator/actions/RaidAction";
 import {Currency} from "@/ig-template/features/wallet/Currency";
 import {Wallet} from "@/ig-template/features/wallet/Wallet";
 import {Random} from "@/ig-template/tools/probability/Random";
 
-export class GainCurrencyAction extends JewelAction {
+export class GainCurrencyAction extends RaidAction {
     _wallet: Wallet;
     currency: Currency;
 

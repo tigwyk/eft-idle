@@ -139,17 +139,17 @@ export class Wallet extends Feature {
 
     public save(): WalletSaveData {
         return {
-            sapphire: this._currencies[CurrencyType.Sapphire],
-            emerald: this._currencies[CurrencyType.Emerald],
-            ruby: this._currencies[CurrencyType.Ruby],
+            rouble: this._currencies[CurrencyType.Rouble],
+            dollar: this._currencies[CurrencyType.Dollar],
+            euro: this._currencies[CurrencyType.Euro],
             diamond: this._currencies[CurrencyType.Diamond],
         }
     }
 
     public load(data: WalletSaveData): void {
-        this._currencies[CurrencyType.Sapphire] = data.sapphire ?? this._currencies[CurrencyType.Sapphire];
-        this._currencies[CurrencyType.Emerald] = data.emerald ?? this._currencies[CurrencyType.Emerald];
-        this._currencies[CurrencyType.Ruby] = data.ruby ?? this._currencies[CurrencyType.Ruby];
+        this._currencies[CurrencyType.Rouble] = data.rouble ?? this._currencies[CurrencyType.Rouble];
+        this._currencies[CurrencyType.Dollar] = data.dollar ?? this._currencies[CurrencyType.Dollar];
+        this._currencies[CurrencyType.Euro] = data.euro ?? this._currencies[CurrencyType.Euro];
         this._currencies[CurrencyType.Diamond] = data.diamond ?? this._currencies[CurrencyType.Diamond];
     }
 
@@ -161,16 +161,16 @@ export class Wallet extends Feature {
         return this._onCurrencyGain.asEvent();
     }
 
-    public get sapphire(): number {
-        return this._currencies.Sapphire;
+    public get rouble(): number {
+        return this._currencies.Rouble;
     }
 
-    public get emerald(): number {
-        return this._currencies.Emerald;
+    public get dollar(): number {
+        return this._currencies.Dollar;
     }
 
-    public get ruby(): number {
-        return this._currencies.Ruby;
+    public get euro(): number {
+        return this._currencies.Euro;
     }
 
     public get diamond(): number {

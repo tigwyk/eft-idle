@@ -66,7 +66,7 @@ export default {
       this.wallet.gainCurrency(new Currency(amount, CurrencyType.Diamond));
     },
     gainSecondary(amount) {
-      this.wallet.gainCurrency(new Currency(amount, CurrencyType.Ruby));
+      this.wallet.gainCurrency(new Currency(amount, CurrencyType.Euro));
     },
     loseMoney(amount) {
       this.wallet.payIfPossible(new Currency(amount, CurrencyType.Diamond));
@@ -83,10 +83,10 @@ export default {
       return this.wallet.getCurrencyMultiplier(CurrencyType.Diamond);
     },
     secondary() {
-      return this.wallet._currencies[CurrencyType.Ruby];
+      return this.wallet._currencies[CurrencyType.Euro];
     },
     secondaryMultiplier() {
-      return this.wallet.getCurrencyMultiplier(CurrencyType.Ruby);
+      return this.wallet.getCurrencyMultiplier(CurrencyType.Euro);
     },
   },
 

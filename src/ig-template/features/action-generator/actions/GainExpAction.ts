@@ -1,7 +1,7 @@
-import {JewelAction} from "@/ig-template/features/action-generator/actions/JewelAction";
+import {RaidAction} from "@/ig-template/features/action-generator/actions/RaidAction";
 import {AbstractExpLevel} from "@/ig-template/tools/exp-level/AbstractExpLevel";
 
-export class GainExpAction extends JewelAction {
+export class GainExpAction extends RaidAction {
     _expLevel: AbstractExpLevel
     amount: number;
 

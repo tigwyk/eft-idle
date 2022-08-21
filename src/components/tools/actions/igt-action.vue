@@ -21,7 +21,7 @@
 
 
 import IgtProgressBar from "@/components/util/igt-progress-bar";
-import {JewelAction} from "@/ig-template/features/action-generator/actions/JewelAction";
+import {RaidAction} from "@/ig-template/features/action-generator/actions/RaidAction";
 import {GainExpAction} from "@/ig-template/features/action-generator/actions/GainExpAction";
 import {GainCurrencyAction} from "@/ig-template/features/action-generator/actions/GainCurrencyAction";
 import {CurrencyType} from "@/ig-template/features/wallet/CurrencyType";
@@ -35,7 +35,7 @@ export default {
       required: true,
     },
     action: {
-      type: JewelAction,
+      type: RaidAction,
       required: true,
     },
     highlightNegatives: {
@@ -61,11 +61,11 @@ export default {
       }
       if (this.action instanceof GainCurrencyAction) {
         switch (this.action.currency.type) {
-          case CurrencyType.Sapphire:
+          case CurrencyType.Rouble:
             return 'bg-blue-500 border-blue-700';
-          case CurrencyType.Emerald:
+          case CurrencyType.Dollar:
             return 'bg-green-500 border-green-700';
-          case CurrencyType.Ruby:
+          case CurrencyType.Euro:
             return 'bg-red-600 border-red-700';
           case CurrencyType.Diamond:
             return 'bg-gray-400 border-gray-500';

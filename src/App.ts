@@ -28,7 +28,7 @@ export class App {
     public static getDefaultGame(): Game {
         return new Game(
             {
-                wallet: new Wallet([CurrencyType.Sapphire, CurrencyType.Emerald, CurrencyType.Ruby, CurrencyType.Diamond]),
+                wallet: new Wallet([CurrencyType.Rouble, CurrencyType.Dollar, CurrencyType.Euro, CurrencyType.Diamond]),
                 settings: new Settings(),
                 codes: new RedeemableCodes(),
                 actionGenerator: new ActionGenerator(),

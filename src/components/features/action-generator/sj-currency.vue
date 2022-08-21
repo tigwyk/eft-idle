@@ -1,14 +1,14 @@
 <template>
   <div class="flex flex-row justify-center">
     <span class="mr-2">{{ currency.amount }}</span>
-    <span v-if="currency.type === CurrencyType.Sapphire">
-            <img class="w-8 h-8" :src="require('@/assets/images/currencies/sapphire.svg')">
+    <span v-if="currency.type === CurrencyType.Rouble">
+            <img class="w-8 h-8" :src="require('@/assets/images/currencies/rouble.svg')">
     </span>
-    <span v-if="currency.type === CurrencyType.Emerald">
-            <img class="w-8 h-8" :src="require('@/assets/images/currencies/emerald.svg')">
+    <span v-if="currency.type === CurrencyType.Dollar">
+            <img class="w-8 h-8" :src="require('@/assets/images/currencies/dollar.svg')">
     </span>
-    <span v-if="currency.type === CurrencyType.Ruby">
-            <img class="w-8 h-8" :src="require('@/assets/images/currencies/ruby.svg')">
+    <span v-if="currency.type === CurrencyType.Euro">
+            <img class="w-8 h-8" :src="require('@/assets/images/currencies/euro.svg')">
     </span>
     <span v-if="currency.type === CurrencyType.Diamond">
             <img class="w-8 h-8" :src="require('@/assets/images/currencies/diamond.svg')">

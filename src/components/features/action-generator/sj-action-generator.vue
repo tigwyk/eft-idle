@@ -1,8 +1,6 @@
 <template>
   <igt-feature class="text-white">
 
-    <igt-exp-level class="m-1" title="Each level increases jewel rewards" :exp-level="level"></igt-exp-level>
-
     <div class="flex flex-row flex-wrap">
       <sj-time-upgrade :upgrade="refreshUpgrade" :can-buy="generator.canAfford(refreshUpgrade)"
                        @click.native="generator.buyUpgrade(refreshUpgrade)"></sj-time-upgrade>
@@ -35,7 +33,8 @@
 
     <div class="m-2 flex flex-col">
       <div class="flex flex-row justify-between">
-        <span>Refreshing actions in...</span>
+        <span>Running Raid...</span>
+        <span>{{ generator.checkCounter}}</span>
         <span class=""><span class="fa fa-clock"></span> {{ generator.switchTime }}</span>
       </div>
       <igt-progress-bar :percentage="refreshProgress" fg-class="bg-gray-500" bg-class="bg-gray-600"></igt-progress-bar>
@@ -59,7 +58,7 @@
 <script>
 import {App} from "@/App.ts"
 import IgtFeature from "@/components/util/igt-feature";
-import IgtExpLevel from "@/components/tools/exp-level/igt-exp-level";
+
 import IgtAction from "@/components/tools/actions/igt-action";
 import IgtProgressBar from "@/components/util/igt-progress-bar";
 import SjTimeUpgrade from "@/components/tools/upgrades/sj-time-upgrade";
@@ -68,10 +67,11 @@ import IgtSingleLevelUpgrade from "@/components/tools/upgrades/igt-single-level-
 
 export default {
   name: "sj-action-generator",
-  components: {IgtSingleLevelUpgrade, IgtUpgrade, SjTimeUpgrade, IgtProgressBar, IgtAction, IgtExpLevel, IgtFeature},
+  components: {IgtSingleLevelUpgrade, IgtUpgrade, SjTimeUpgrade, IgtProgressBar, IgtAction, IgtFeature},
   data() {
     return {
       generator: App.game.features.actionGenerator,
+      inventory: App.game.inventory
     }
   },
   computed: {
@@ -110,9 +110,6 @@ export default {
     },
     actions() {
       return this.generator.actions;
-    },
-    level() {
-      return this.generator.playerLevel;
     }
   },
   methods: {

@@ -1,7 +1,7 @@
 import {AbstractAction} from "@/ig-template/tools/actions/AbstractAction";
 import {NoRequirement} from "@/ig-template/tools/requirements/NoRequirement";
 
-export abstract class JewelAction extends AbstractAction {
+export abstract class RaidAction extends AbstractAction {
     isLocked: boolean = false;
     isNegative: boolean;
 
