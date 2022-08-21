@@ -38,7 +38,7 @@
         <span class=""><span class="fa fa-clock"></span> {{ generator.switchTime }}</span>
       </div>
       <igt-progress-bar :percentage="refreshProgress" fg-class="bg-gray-500" bg-class="bg-gray-600"></igt-progress-bar>
-
+  <igt-loot-table></igt-loot-table>
     </div>
     <p class="m-2"><span class="fa fa-lock"></span> Locks used {{generator.currentLock}} / {{generator.maxLock}}</p>
     <div class="flex flex-row flex-wrap">
@@ -58,7 +58,7 @@
 <script>
 import {App} from "@/App.ts"
 import IgtFeature from "@/components/util/igt-feature";
-
+import IgtLootTable from "@/components/features/loot-tables/igt-loot-table";
 import IgtAction from "@/components/tools/actions/igt-action";
 import IgtProgressBar from "@/components/util/igt-progress-bar";
 import SjTimeUpgrade from "@/components/tools/upgrades/sj-time-upgrade";
@@ -67,7 +67,7 @@ import IgtSingleLevelUpgrade from "@/components/tools/upgrades/igt-single-level-
 
 export default {
   name: "sj-action-generator",
-  components: {IgtSingleLevelUpgrade, IgtUpgrade, SjTimeUpgrade, IgtProgressBar, IgtAction, IgtFeature},
+  components: {IgtSingleLevelUpgrade, IgtUpgrade, SjTimeUpgrade, IgtProgressBar, IgtAction, IgtFeature, IgtLootTable},
   data() {
     return {
       generator: App.game.features.actionGenerator,

@@ -1,15 +1,15 @@
 import {IgtLoot} from "@/ig-template/tools/loot-tables/rewards/IgtLoot";
 import {Currency} from "@/ig-template/features/wallet/Currency";
-import {IgtWallet} from "@/ig-template/features/wallet/IgtWallet";
+import {Wallet} from "@/ig-template/features/wallet/Wallet";
 import {CurrencyType} from "@/ig-template/features/wallet/CurrencyType";
 
 export class CurrencyLoot extends IgtLoot {
 
     loot: CurrencyType;
-    _wallet: IgtWallet;
+    _wallet: Wallet;
 
 
-    constructor(amount: number, type: CurrencyType, wallet: IgtWallet) {
+    constructor(amount: number, type: CurrencyType, wallet: Wallet) {
         super(amount);
         this.loot = type;
         this._wallet = wallet;

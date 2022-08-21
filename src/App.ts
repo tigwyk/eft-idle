@@ -37,7 +37,7 @@ export class App {
                 keyItems: new KeyItems(),
                 specialEvents: new SpecialEvents(),
                 statistics: new Statistics(),
-                achievements: new Achievements(),
+                achievements: new Achievements()
             }
         );
     }

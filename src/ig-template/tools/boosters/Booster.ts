@@ -1,8 +1,8 @@
 import {BoosterTier} from "@/ig-template/tools/boosters/BoosterTier";
-import {IgtWallet} from "@/ig-template/features/wallet/IgtWallet";
+import {Wallet} from "@/ig-template/features/wallet/Wallet";
 
 export class Booster {
-    protected readonly _wallet: IgtWallet;
+    protected readonly _wallet: Wallet;
 
     description: string;
     /**
@@ -16,7 +16,7 @@ export class Booster {
      */
     defaultOutput: number
 
-    constructor(description: string, tiers: BoosterTier[], wallet: IgtWallet, defaultOutput: number) {
+    constructor(description: string, tiers: BoosterTier[], wallet: Wallet, defaultOutput: number) {
         this.description = description
         this.tiers = tiers;
         this.defaultOutput = defaultOutput;

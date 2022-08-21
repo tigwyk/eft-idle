@@ -2,15 +2,15 @@ import {IgtLootEntry} from "@/ig-template/tools/loot-tables/entries/IgtLootEntry
 import {Requirement} from "@/ig-template/tools/requirements/Requirement";
 import {NoRequirement} from "@/ig-template/tools/requirements/NoRequirement";
 import {IntRange} from "@/ig-template/tools/probability/IntRange";
-import {IgtWallet} from "@/ig-template/features/wallet/IgtWallet";
+import {Wallet} from "@/ig-template/features/wallet/Wallet";
 import {CurrencyLoot} from "@/ig-template/tools/loot-tables/rewards/CurrencyLoot";
 import {CurrencyType} from "@/ig-template/features/wallet/CurrencyType";
 
 export class CurrencyEntry extends IgtLootEntry {
-    _wallet: IgtWallet;
+    _wallet: Wallet;
     type: CurrencyType;
 
-    constructor(amount: IntRange, type: CurrencyType, wallet: IgtWallet, weight: number = 1, requirement: Requirement = new NoRequirement()) {
+    constructor(amount: IntRange, type: CurrencyType, wallet: Wallet, weight: number = 1, requirement: Requirement = new NoRequirement()) {
         super(weight, amount, requirement);
         this.type = type;
         this._wallet = wallet;

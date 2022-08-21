@@ -1,13 +1,13 @@
 import {IgtLoot} from "@/ig-template/tools/loot-tables/rewards/IgtLoot";
-import {IgtInventory} from "@/ig-template/features/inventory/IgtInventory";
+import {Inventory} from "@/ig-template/features/inventory/Inventory";
 import {AbstractItem} from "@/ig-template/features/items/AbstractItem";
 
 export class InventoryItemLoot extends IgtLoot {
     loot: AbstractItem;
-    _inventory: IgtInventory;
+    _inventory: Inventory;
 
 
-    constructor(loot: AbstractItem, amount: number, inventory: IgtInventory) {
+    constructor(loot: AbstractItem, amount: number, inventory: Inventory) {
         super(amount);
         this.loot = loot;
         this._inventory = inventory;

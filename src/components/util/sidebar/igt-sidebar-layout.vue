@@ -10,7 +10,7 @@
           <div class="flex items-center p-2 mx-2">
             <img class="h-12 w-12" :src="require(`@/assets/logo.png`)" alt="logo">
             <span
-                class="text-gray-800 dark:text-white text-xl font-semibold text-center">Incremental Game Template</span>
+                class="text-gray-800 dark:text-white text-xl font-semibold text-center">EFT Idle</span>
           </div>
         </div>
 
