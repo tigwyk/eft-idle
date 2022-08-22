@@ -16,6 +16,7 @@ import {ArrayBuilder} from "@/ig-template/util/ArrayBuilder";
 import {SingleLevelUpgrade} from "@/ig-template/tools/upgrades/SingleLevelUpgrade";
 import {WeightedDistribution} from "@/ig-template/tools/probability/WeightedDistribution";
 import {Outcome} from "@/ig-template/tools/probability/Outcome";
+import { random } from "lodash-es";
 
 export class ActionGenerator extends UpgradesFeature {
 
@@ -32,6 +33,7 @@ export class ActionGenerator extends UpgradesFeature {
     completeTheGame: SingleLevelUpgrade;
 
     public checkCounter: number = 0;
+    public luckChance: number = 10;
 
     constructor() {
         super('action-generator-feature');
@@ -134,6 +136,7 @@ export class ActionGenerator extends UpgradesFeature {
     }
 
     update(delta: number) {
+
         this.actions.forEach(action => {
             action.perform(delta);
         })
@@ -145,7 +148,7 @@ export class ActionGenerator extends UpgradesFeature {
         }
 
         if (this.maxActionCount > this.actions.length) {
-            this.actions.push(this.createCurrencyGain(this.playerLevel.getLevel(), this.negativeProb))
+            this.actions.push(this.createCurrencyGain(this.playerLevel.getLevel(), 0))
         }
     }
 
@@ -216,65 +219,38 @@ export class ActionGenerator extends UpgradesFeature {
     }
 
     createExpGain(level: number, negativeProb: number) {
-        let benefit = Math.floor(3 + Math.pow(level + 2, 1.4));
-        let duration = Math.max(12, Random.fuzzInt(Math.sqrt(benefit * 5), 0.3));
-        const isNegative = Random.booleanWithProbability(negativeProb);
-        if (isNegative) {
-            benefit *= -4 / 5;
-            duration /= 3;
-        }
+        const benefit = Math.floor(3 + Math.pow(level + 2, 1.4));
+        const duration = Math.max(12, Random.fuzzInt(Math.sqrt(benefit * 5), 0.3));
         return new GainExpAction(duration, this.playerLevel, Random.fuzzInt(benefit, 0.2))
     }
 
     createCurrencyGain(level: number, negativeProb: number): GainCurrencyAction {
-        const isNegative = Random.booleanWithProbability(negativeProb);
         const distribution = new WeightedDistribution([
-            new Outcome<GainCurrencyAction>(this.createRouble(level, isNegative), 8 - this.gemImprovement),
-            new Outcome<GainCurrencyAction>(this.createDollar(level, isNegative), 5 - this.gemImprovement / 2),
-            new Outcome<GainCurrencyAction>(this.createEuro(level, isNegative), 2 + this.gemImprovement / 2),
-            new Outcome<GainCurrencyAction>(this.createDiamond(level, isNegative), -1 + this.gemImprovement),
+            new Outcome<GainCurrencyAction>(this.createRouble(level, false), 8 - this.gemImprovement),
+            new Outcome<GainCurrencyAction>(this.createDollar(level, false), 5 - this.gemImprovement / 2),
+            new Outcome<GainCurrencyAction>(this.createEuro(level, false), 2 + this.gemImprovement / 2),
+            new Outcome<GainCurrencyAction>(this.createDiamond(level, false), -1 + this.gemImprovement),
         ])
         return distribution.draw();
     }
 
     createRouble(level: number, isNegative: boolean) {
-        if (isNegative) {
-            level = Math.min(1, level - 5);
-        }
-        let benefit = Random.intBetween(10, 10 + 6 * level)
-        if (isNegative) {
-            benefit *= -1;
-        }
+        const benefit = Random.intBetween(10, 10 + 6 * level)
         return new GainCurrencyAction(5, new Currency(benefit, CurrencyType.Rouble), this._wallet)
     }
 
     createDollar(level: number, isNegative: boolean) {
-        if (isNegative) {
-            level = Math.min(1, level - 3);
-        }
-        let benefit = Random.intBetween(6, 6 + 4 * level)
-        if (isNegative) {
-            benefit *= -1;
-        }
+        const benefit = Random.intBetween(6, 6 + 4 * level)
         return new GainCurrencyAction(15, new Currency(benefit, CurrencyType.Dollar), this._wallet)
     }
 
     createEuro(level: number, isNegative: boolean) {
-        if (isNegative) {
-            level = Math.min(1, level - 2);
-        }
-        let benefit = Random.intBetween(3, 3 + 3 * level)
-        if (isNegative) {
-            benefit *= -1;
-        }
+        const benefit = Random.intBetween(3, 3 + 3 * level)
         return new GainCurrencyAction(30, new Currency(benefit, CurrencyType.Euro), this._wallet)
     }
 
     createDiamond(level: number, isNegative: boolean) {
-        let benefit = isNegative ? -1 : 1 + Math.floor(level / 4);
-        if (isNegative) {
-            benefit *= -1;
-        }
+        const benefit = isNegative ? -1 : 1 + Math.floor(level / 4);
         return new GainCurrencyAction(120, new Currency(benefit, CurrencyType.Diamond), this._wallet)
     }
 

@@ -9,18 +9,13 @@ export class GainCurrencyAction extends RaidAction {
 
 
     constructor(duration: number, currency: Currency, wallet: Wallet) {
-        super(`${currency.amount < 0 ? 'Lose' : 'Gain'} ${currency.amount} ${currency.type}`, Random.fuzzInt(duration, 0.2), currency.amount < 0);
+        super(`${currency.amount < 0 ? 'Lose' : 'Gain'} ${currency.amount} ${currency.type}`, Random.fuzzInt(duration, 0.2));
         this.currency = currency;
         this._wallet = wallet;
     }
 
     gainReward(): boolean {
-        if (this.isNegative) {
-            this.currency.amount = Math.abs(this.currency.amount);
-            this._wallet.loseCurrency(this.currency);
-        } else {
-            this._wallet.gainCurrency(this.currency);
-        }
+        this._wallet.gainCurrency(this.currency);
         return true;
     }
 

@@ -7,7 +7,7 @@ export class GainExpAction extends RaidAction {
 
 
     constructor(duration: number, expLevel: AbstractExpLevel, amount: number) {
-        super(`${amount < 0 ? 'Lose' : 'Gain'} ${amount} EXP`, duration, amount < 0);
+        super(`${amount < 0 ? 'Lose' : 'Gain'} ${amount} EXP`, duration);
         this._expLevel = expLevel;
         this.amount = amount;
     }

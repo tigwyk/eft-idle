@@ -3,10 +3,8 @@ import {NoRequirement} from "@/ig-template/tools/requirements/NoRequirement";
 
 export abstract class RaidAction extends AbstractAction {
     isLocked: boolean = false;
-    isNegative: boolean;
 
-    protected constructor(description: string, duration: number, isNegative: boolean) {
+    protected constructor(description: string, duration: number) {
         super(description, duration, Infinity, new NoRequirement());
-        this.isNegative = isNegative;
     }
 }

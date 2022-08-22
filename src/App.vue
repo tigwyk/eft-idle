@@ -40,6 +40,7 @@ import IgtNotifications from "@/components/util/igt-notifications";
 import IgtSidebar from "@/components/util/sidebar/igt-sidebar-layout";
 import IgtSidebarCategory from "@/components/util/sidebar/igt-sidebar-category";
 import IgtSidebarExternalLink from "@/components/util/sidebar/igt-sidebar-external-link";
+import IgtDeveloperPanel from "@/components/developer-panel/igt-developer-panel";
 import IgtTab from "@/components/util/igt-tab";
 import SjActionGenerator from "@/components/features/action-generator/sj-action-generator";
 import SjCharacter from "@/components/features/character-screen/sj-character";
@@ -51,6 +52,7 @@ export default {
     SjHeader,
     SjActionGenerator,
     IgtNotifications,
+    IgtDeveloperPanel,
     IgtTab,
     IgtSidebarExternalLink,
     IgtSidebarCategory,
