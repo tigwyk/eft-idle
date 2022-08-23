@@ -1,5 +1,7 @@
 import {AbstractUpgrade} from "@/ig-template/tools/upgrades/AbstractUpgrade";
 import {Wallet} from "@/ig-template/features/wallet/Wallet";
+import { Inventory } from "@/ig-template/features/inventory/Inventory";
+import { ItemList } from "@/ig-template/features/items/ItemList";
 import {UpgradeId} from "@/ig-template/tools/upgrades/UpgradeId";
 import {Feature} from "@/ig-template/features/Feature";
 import {Features} from "@/ig-template/Features";
@@ -11,6 +13,8 @@ import {UpgradesFeatureSaveData} from "@/ig-template/tools/saving/UpgradesFeatur
 export abstract class UpgradesFeature extends Feature {
 
     _wallet: Wallet = null as unknown as Wallet;
+    _inventory: Inventory = null as unknown as Inventory;
+    _itemList: ItemList = null as unknown as ItemList;
     upgrades: AbstractUpgrade[];
 
     protected constructor(saveKey: string, upgrades: AbstractUpgrade[] = []) {

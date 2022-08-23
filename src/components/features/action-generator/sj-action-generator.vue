@@ -34,7 +34,7 @@
     <div class="m-2 flex flex-col">
       <div class="flex flex-row justify-between">
         <span>Running Raid...</span>
-        <span>{{ generator.checkCounter}}</span>
+        <span>{{ formatNumber(generator.checkCounter / generator.switchTime * 100) }}%</span>
         <span class=""><span class="fa fa-clock"></span> {{ generator.switchTime }}</span>
       </div>
       <igt-progress-bar :percentage="refreshProgress" fg-class="bg-gray-500" bg-class="bg-gray-600"></igt-progress-bar>
@@ -129,6 +129,9 @@ export default {
       } else {
         this.generator.unlock(index);
       }
+    },
+    formatNumber(num) {
+      return parseFloat(num).toFixed(0)
     }
   },
 

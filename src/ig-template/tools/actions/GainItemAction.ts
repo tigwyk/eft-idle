@@ -10,6 +10,8 @@ export class GainItemAction extends AbstractAction {
     _inventory: Inventory;
     _itemList: ItemList;
 
+    isLocked: boolean = false;
+
     constructor(itemId: ItemId, description: string, duration: number, inventory: Inventory, itemList: ItemList) {
         super(description, duration);
         this.itemId = itemId;

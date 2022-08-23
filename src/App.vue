@@ -2,7 +2,6 @@
   <div :class="{'dark': darkMode}">
     <igt-notifications></igt-notifications>
     <div class="flex flex-col h-screen">
-    <sj-header></sj-header>  
     <igt-sidebar title="EFT Idle">
     <igt-sidebar-category name="Gameplay"></igt-sidebar-category>
       <igt-tab name="Raids" :selected="true">
@@ -44,12 +43,10 @@ import IgtDeveloperPanel from "@/components/developer-panel/igt-developer-panel"
 import IgtTab from "@/components/util/igt-tab";
 import SjActionGenerator from "@/components/features/action-generator/sj-action-generator";
 import SjCharacter from "@/components/features/character-screen/sj-character";
-import SjHeader from "@/components/sj-header";
 import IgtSettings from "@/components/features/settings/igt-settings";
 
 export default {
   components: {
-    SjHeader,
     SjActionGenerator,
     IgtNotifications,
     IgtDeveloperPanel,

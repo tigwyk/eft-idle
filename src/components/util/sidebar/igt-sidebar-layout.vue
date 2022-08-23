@@ -13,6 +13,25 @@
                 class="text-gray-800 dark:text-white text-xl font-semibold text-center">EFT Idle</span>
           </div>
         </div>
+          <div class="w-full h-20 bg-gray-500 shadow-xl flex flex-row items-center justify-center text-white">
+    <div class="p-4 flex flex-row items-center" title="Rouble">
+      <span class="m-2 text-lg">{{ rouble }}</span>
+      <img class="w-8 h-8" :src="require('@/assets/images/currencies/rouble.svg')">
+    </div>
+    <div class="p-4 flex flex-row items-center" title="Dollar">
+      <span class="m-2 text-lg">{{ dollar }}</span>
+      <img class="w-8 h-8" :src="require('@/assets/images/currencies/dollar.svg')">
+    </div>
+
+    <!-- <div class="p-4 flex flex-row items-center" title="Euro">
+      <span class="m-2 text-lg">{{ euro }}</span>
+      <img class="w-8 h-8" :src="require('@/assets/images/currencies/euro.svg')">
+    </div>
+    <div class="p-4 flex flex-row items-center" title="Diamond">
+      <span class="m-2 text-lg">{{ diamond }}</span>
+      <img class="w-8 h-8" :src="require('@/assets/images/currencies/diamond.svg')">
+    </div>  -->
+  </div>
 
         <nav class="flex flex-col mt-10 px-4 text-left">
 
@@ -71,6 +90,7 @@
 </template>
 
 <script>
+import {App} from "@/App.ts"
 
 export default {
   name: "igt-sidebar",
@@ -80,6 +100,7 @@ export default {
       darkMode: true,
       dropdownOpen: true,
       tabs: [],
+      wallet: App.game.features.wallet,
     };
   },
 
@@ -89,6 +110,18 @@ export default {
         return tab.isActive;
       });
     },
+    rouble() {
+      return this.wallet.rouble;
+    },
+    dollar() {
+      return this.wallet.dollar;
+    },
+    euro() {
+      return this.wallet.euro;
+    },
+    diamond() {
+      return this.wallet.diamond;
+    }
   },
   created() {
     this.tabs = this.$children;

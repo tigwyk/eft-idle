@@ -4,6 +4,7 @@ import {Features} from "@/ig-template/Features";
 import {ActionGeneratorSaveData} from "@/ig-template/features/action-generator/ActionGeneratorSaveData";
 import {RaidAction} from "@/ig-template/features/action-generator/actions/RaidAction";
 import {GainExpAction} from "@/ig-template/features/action-generator/actions/GainExpAction";
+import { GainItemAction } from "@/ig-template/tools/actions/GainItemAction";
 import {Random} from "@/ig-template/tools/probability/Random";
 import {GainCurrencyAction} from "@/ig-template/features/action-generator/actions/GainCurrencyAction";
 import {CurrencyType} from "@/ig-template/features/wallet/CurrencyType";
@@ -16,7 +17,7 @@ import {ArrayBuilder} from "@/ig-template/util/ArrayBuilder";
 import {SingleLevelUpgrade} from "@/ig-template/tools/upgrades/SingleLevelUpgrade";
 import {WeightedDistribution} from "@/ig-template/tools/probability/WeightedDistribution";
 import {Outcome} from "@/ig-template/tools/probability/Outcome";
-import { random } from "lodash-es";
+import { ShootScavAction } from "./actions/ShootScavAction";
 
 export class ActionGenerator extends UpgradesFeature {
 
@@ -178,6 +179,8 @@ export class ActionGenerator extends UpgradesFeature {
 
     initialize(features: Features) {
         this._wallet = features.wallet;
+        this._inventory = features.inventory;
+        this._itemList = features.itemList;
     }
 
     private generateNewActions() {
@@ -212,10 +215,46 @@ export class ActionGenerator extends UpgradesFeature {
         for (let i = 0; i < 7; i++) {
             possibleActions.push(this.createExpGain(level, negativeProb))
         }
+        for (let i = 0; i < 5; i++) {
+            possibleActions.push(this.createScavAction(level, negativeProb))
+        }
+        for (let i = 0; i < 2; i++) {
+            possibleActions.push(this.createRandomItemDrop(level, negativeProb))
+        }
         possibleActions.forEach(action => {
             action.duration /= this.speedBoost;
         })
         return Random.fromArray(possibleActions);
+    }
+
+    createScavAction(level: number, negativeProb: number) {
+        const benefit = Math.floor(3 + Math.pow(level + 2, 1.4));
+        const duration = Math.max(12, Random.fuzzInt(Math.sqrt(benefit * 5), 0.3));
+        const scavAction = new ShootScavAction(duration, this.playerLevel, Random.fuzzInt(benefit, 0.2),this._wallet);
+        scavAction.onCompletion.subscribe(action => {
+            console.log("Completed", action.description);
+            const index = this.actions.indexOf(scavAction, 0);
+            if (index > -1) {
+                this.actions.splice(index, 1);
+            }
+        });
+        return scavAction;
+    }
+
+    createItemDrop(level: number, negativeProb: number) {
+        const benefit = Math.floor(3 + Math.pow(level + 2, 1.4));
+        const duration = Math.max(12, Random.fuzzInt(Math.sqrt(benefit * 5), 0.3));
+        return new GainItemAction(this._itemList.helmet.id,"Shoot Scavs",duration,this._inventory, this._itemList)
+    }
+
+    createRandomItemDrop(level: number, negativeProb: number): GainItemAction {
+        const distribution = new WeightedDistribution([
+            new Outcome<GainItemAction>(this.createHelmetDrop(level, false), 8 - this.gemImprovement),
+            new Outcome<GainItemAction>(this.createArmorDrop(level, false), 5 - this.gemImprovement / 2),
+            new Outcome<GainItemAction>(this.createWeaponDrop(level, false), 2 + this.gemImprovement / 2),
+            new Outcome<GainItemAction>(this.createBagDrop(level, false), -1 + this.gemImprovement),
+        ])
+        return distribution.draw();
     }
 
     createExpGain(level: number, negativeProb: number) {
@@ -232,6 +271,62 @@ export class ActionGenerator extends UpgradesFeature {
             new Outcome<GainCurrencyAction>(this.createDiamond(level, false), -1 + this.gemImprovement),
         ])
         return distribution.draw();
+    }
+
+    createHelmetDrop(level: number, isNegative: boolean) {
+        const benefit = Random.intBetween(10, 10 + 6 * level)
+        const duration = Math.max(12, Random.fuzzInt(Math.sqrt(benefit * 5), 0.3));
+        const itemAction = new GainItemAction(this._itemList.helmet.id,"Search for Helmet",duration,this._inventory, this._itemList);
+        itemAction.onCompletion.subscribe(action => {
+            console.log("Completed", action.description);
+            const index = this.actions.indexOf(itemAction, 0);
+            if (index > -1) {
+                this.actions.splice(index, 1);
+            }
+        });
+        return itemAction;
+    }
+
+    createArmorDrop(level: number, isNegative: boolean) {
+        const benefit = Random.intBetween(10, 10 + 6 * level)
+        const duration = Math.max(12, Random.fuzzInt(Math.sqrt(benefit * 5), 0.3));
+        const itemAction = new GainItemAction(this._itemList.helmet.id,"Search for Armor",duration,this._inventory, this._itemList);
+        itemAction.onCompletion.subscribe(action => {
+            console.log("Completed", action.description);
+            const index = this.actions.indexOf(itemAction, 0);
+            if (index > -1) {
+                this.actions.splice(index, 1);
+            }
+        });
+        return itemAction;
+    }
+
+    createWeaponDrop(level: number, isNegative: boolean) {
+        const benefit = Random.intBetween(10, 10 + 6 * level)
+        const duration = Math.max(12, Random.fuzzInt(Math.sqrt(benefit * 5), 0.3));
+        const itemAction = new GainItemAction(this._itemList.helmet.id,"Search for Weapon",duration,this._inventory, this._itemList);
+        itemAction.onCompletion.subscribe(action => {
+            console.log("Completed", action.description);
+            const index = this.actions.indexOf(itemAction, 0);
+            if (index > -1) {
+                this.actions.splice(index, 1);
+            }
+        });
+        return itemAction;
+    }
+
+    createBagDrop(level: number, isNegative: boolean) {
+        const benefit = Random.intBetween(10, 10 + 6 * level)
+        const duration = Math.max(12, Random.fuzzInt(Math.sqrt(benefit * 5), 0.3));
+        const itemAction = new GainItemAction(this._itemList.helmet.id,"Search for Bag",duration,this._inventory, this._itemList);
+        itemAction.onCompletion.subscribe(action => {
+            console.log("Completed", action.description);
+            const index = this.actions.indexOf(itemAction, 0);
+            if (index > -1) {
+                this.actions.splice(index, 1);
+            }
+        });
+        return itemAction;
     }
 
     createRouble(level: number, isNegative: boolean) {
