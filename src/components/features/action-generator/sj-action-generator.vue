@@ -68,7 +68,7 @@ import IgtSingleLevelUpgrade from "@/components/tools/upgrades/igt-single-level-
 export default {
   name: "sj-action-generator",
   // components: {IgtSingleLevelUpgrade, IgtUpgrade, SjTimeUpgrade, IgtProgressBar, IgtAction, IgtFeature, IgtLootTable},
-  components: {IgtSingleLevelUpgrade, IgtUpgrade, SjTimeUpgrade, IgtProgressBar, IgtAction, IgtFeature},
+  components: {IgtSingleLevelUpgrade, IgtUpgrade, SjTimeUpgrade,IgtProgressBar, IgtAction, IgtFeature},
   data() {
     return {
       generator: App.game.features.actionGenerator,

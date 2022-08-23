@@ -244,7 +244,7 @@ export class ActionGenerator extends UpgradesFeature {
     createItemDrop(level: number, negativeProb: number) {
         const benefit = Math.floor(3 + Math.pow(level + 2, 1.4));
         const duration = Math.max(12, Random.fuzzInt(Math.sqrt(benefit * 5), 0.3));
-        return new GainItemAction(this._itemList.helmet.id,"Shoot Scavs",duration,this._inventory, this._itemList)
+        return new GainItemAction(this._itemList.armor.id,"Shoot Scavs",duration,this._inventory, this._itemList)
     }
 
     createRandomItemDrop(level: number, negativeProb: number): GainItemAction {
@@ -276,7 +276,7 @@ export class ActionGenerator extends UpgradesFeature {
     createHelmetDrop(level: number, isNegative: boolean) {
         const benefit = Random.intBetween(10, 10 + 6 * level)
         const duration = Math.max(12, Random.fuzzInt(Math.sqrt(benefit * 5), 0.3));
-        const itemAction = new GainItemAction(this._itemList.helmet.id,"Search for Helmet",duration,this._inventory, this._itemList);
+        const itemAction = new GainItemAction(this._itemList.helmet.id,"Search Container",duration,this._inventory, this._itemList);
         itemAction.onCompletion.subscribe(action => {
             console.log("Completed", action.description);
             const index = this.actions.indexOf(itemAction, 0);
@@ -290,7 +290,7 @@ export class ActionGenerator extends UpgradesFeature {
     createArmorDrop(level: number, isNegative: boolean) {
         const benefit = Random.intBetween(10, 10 + 6 * level)
         const duration = Math.max(12, Random.fuzzInt(Math.sqrt(benefit * 5), 0.3));
-        const itemAction = new GainItemAction(this._itemList.helmet.id,"Search for Armor",duration,this._inventory, this._itemList);
+        const itemAction = new GainItemAction(this._itemList.armor.id,"Search Container",duration,this._inventory, this._itemList);
         itemAction.onCompletion.subscribe(action => {
             console.log("Completed", action.description);
             const index = this.actions.indexOf(itemAction, 0);
@@ -304,7 +304,7 @@ export class ActionGenerator extends UpgradesFeature {
     createWeaponDrop(level: number, isNegative: boolean) {
         const benefit = Random.intBetween(10, 10 + 6 * level)
         const duration = Math.max(12, Random.fuzzInt(Math.sqrt(benefit * 5), 0.3));
-        const itemAction = new GainItemAction(this._itemList.helmet.id,"Search for Weapon",duration,this._inventory, this._itemList);
+        const itemAction = new GainItemAction(this._itemList.armor.id,"Search Container",duration,this._inventory, this._itemList);
         itemAction.onCompletion.subscribe(action => {
             console.log("Completed", action.description);
             const index = this.actions.indexOf(itemAction, 0);
@@ -318,7 +318,7 @@ export class ActionGenerator extends UpgradesFeature {
     createBagDrop(level: number, isNegative: boolean) {
         const benefit = Random.intBetween(10, 10 + 6 * level)
         const duration = Math.max(12, Random.fuzzInt(Math.sqrt(benefit * 5), 0.3));
-        const itemAction = new GainItemAction(this._itemList.helmet.id,"Search for Bag",duration,this._inventory, this._itemList);
+        const itemAction = new GainItemAction(this._itemList.bag.id,"Search Container",duration,this._inventory, this._itemList);
         itemAction.onCompletion.subscribe(action => {
             console.log("Completed", action.description);
             const index = this.actions.indexOf(itemAction, 0);

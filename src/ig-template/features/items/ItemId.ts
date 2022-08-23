@@ -7,5 +7,7 @@ export enum ItemId {
     ItemWithData = "itemWithData",
     RawFish = "rawFish",
     CookedFish = "cookedFish",
-    Helmet = "helmet"
+    Helmet = "helmet",
+    Armor = "armor",
+    Bag = "bag"
 }
